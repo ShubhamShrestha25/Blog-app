@@ -1,0 +1,44 @@
+.header {
+  margin-top: 60px;
+}
+.header-titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Lora", serif;
+}
+
+.header-title-sm {
+  position: absolute;
+  font-size: 20px;
+  color: #444;
+}
+
+.header-title-lg {
+  position: absolute;
+  top: 13%;
+  font-size: 80px;
+  color: rgb(255, 0, 0);
+}
+
+.header-img {
+  width: 100%;
+  height: 750px;
+  margin-top: 80px;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 720px) {
+  .header-title-sm {
+    font-size: 18px;
+  }
+
+  .header-title-lg {
+    top: 21%;
+    font-size: 70px;
+  }
+
+  .header-img {
+    height: 550px;
+  }
+}
