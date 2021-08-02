@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   font-family: "josefin Sans", sans-serif;
-  z-index: 10;
+  z-index: 999;
 }
 
 .top-left,

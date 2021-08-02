@@ -1,9 +1,0 @@
-.posts {
-  width: 70%;
-}
-
-@media only screen and (max-width: 720px) {
-  .posts {
-    width: 100%;
-  }
-}
