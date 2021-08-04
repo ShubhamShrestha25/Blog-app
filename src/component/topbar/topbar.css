@@ -51,6 +51,21 @@
   cursor: pointer;
 }
 
+.right-list {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.right-list-item {
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
 .top-search-icon {
   font-size: 18px;
   color: #666;
@@ -73,6 +88,11 @@
     margin-top: 75px;
   }
 
+  .right-list-item {
+    margin-right: 10px;
+    font-size: 15px;
+  }
+
   .top-img {
     width: 35px;
     height: 35px;
@@ -80,6 +100,6 @@
 
   .top-search-icon {
     font-size: 16px;
-    margin-left: 10px;
+    margin-right: 50px;
   }
 }
