@@ -26,7 +26,7 @@ const TopBar = () => {
             <Link className="link">CONTACT</Link>
           </li>
           <li className="top-list-item">
-            <Link to="/write" className="link">
+            <Link className="link" to="/write">
               WRITE
             </Link>
           </li>
