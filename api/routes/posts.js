@@ -45,7 +45,7 @@ router.delete("/:id", async (req, res) => {
     if (post.username === req.body.username) {
       try {
         await post.delete();
-        res.status(200).json("Post has been deleted!");
+        res.status(200).json("Post has been deleted...");
       } catch (err) {
         res.status(500).json(err);
       }
@@ -67,7 +67,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//GET ALL POST
+//GET ALL POSTS
 router.get("/", async (req, res) => {
   const username = req.query.user;
   const catName = req.query.cat;
