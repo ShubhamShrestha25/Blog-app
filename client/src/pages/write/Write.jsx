@@ -17,7 +17,7 @@ const Write = () => {
       desc,
     };
     if (file) {
-      const data = FormData();
+      const data = new FormData();
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
@@ -27,8 +27,8 @@ const Write = () => {
       } catch (err) {}
     }
     try {
-      const res = axios.post("/posts", newPost);
-      window.location.replace("/post/" + res.data._id);
+      axios.post("/posts", newPost);
+      window.location.replace("/");
     } catch (err) {}
   };
 
@@ -58,6 +58,7 @@ const Write = () => {
             placeholder="Title"
             className="write-input"
             autoFocus={true}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="write-form-group">
@@ -65,6 +66,7 @@ const Write = () => {
             type="text"
             placeholder="Tell us your story"
             className="write-input write-text"
+            onChange={(e) => setDesc(e.target.value)}
           />
         </div>
         <button className="write-submit" type="submit">

@@ -1,17 +1,45 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Context } from "../../context/Context";
 import "./singlepost.css";
 
 const SinglePost = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
+  const { user } = useContext(Context);
+  const PF = "http://localhost:5000/images/";
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [updateMode, setUpdateMode] = useState(false);
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/posts/${post._id}`, {
+        data: { username: user.username },
+      });
+      window.location.replace("/");
+    } catch (err) {}
+  };
+
+  const handleUpdate = async () => {
+    try {
+      await axios.put(`/posts/${post._id}`, {
+        username: user.username,
+        title,
+        desc,
+      });
+      setUpdateMode(false);
+    } catch (err) {}
+  };
 
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get("/posts/" + path);
       setPost(res.data);
+      setTitle(res.data.title);
+      setDesc(res.data.desc);
     };
     getPost();
   }, [path]);
@@ -20,15 +48,34 @@ const SinglePost = () => {
     <div className="single-post">
       <div className="single-post-wrapper">
         {post.photo && (
-          <img src={post.photo} alt="" className="single-post-img" />
+          <img src={PF + post.photo} alt="" className="single-post-img" />
         )}
-        <h1 className="single-post-title">
-          {post.title}
-          <div className="single-post-edit">
-            <i className="far fa-edit single-post-icon" />
-            <i className="fas fa-trash-alt single-post-icon" />
-          </div>
-        </h1>
+        {updateMode ? (
+          <input
+            type="text"
+            value={title}
+            className="single-post-title-input"
+            onChange={(e) => setTitle(e.target.value)}
+            autoFocus
+          />
+        ) : (
+          <h1 className="single-post-title">
+            {title}
+            {post.username === user?.username && (
+              <div className="single-post-edit">
+                <i
+                  className="far fa-edit single-post-icon"
+                  onClick={() => setUpdateMode(true)}
+                />
+                <i
+                  className="fas fa-trash-alt single-post-icon"
+                  onClick={handleDelete}
+                />
+              </div>
+            )}
+          </h1>
+        )}
+
         <div className="single-post-info">
           <span className="single-post-author">
             Author:
@@ -40,7 +87,20 @@ const SinglePost = () => {
             {new Date(post.createdAt).toDateString()}
           </span>
         </div>
-        <p className="single-post-desc">{post.desc}</p>
+        {updateMode ? (
+          <textarea
+            className="single-post-desc-input"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          />
+        ) : (
+          <p className="single-post-desc">{desc}</p>
+        )}
+        {updateMode && (
+          <button className="single-post-button" onClick={handleUpdate}>
+            Update
+          </button>
+        )}
       </div>
     </div>
   );

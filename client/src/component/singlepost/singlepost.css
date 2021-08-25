@@ -5,6 +5,8 @@
 .single-post-wrapper {
   padding: 20px;
   padding-right: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .single-post-img {
@@ -20,6 +22,19 @@
   margin: 10px;
   font-family: "Lora", serif;
   font-size: 28px;
+}
+
+.single-post-title-input {
+  margin: 10px;
+  font-family: "Lora", serif;
+  font-size: 28px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid lightgray;
+}
+
+.single-post-title-input:focus {
+  outline: none;
 }
 
 .single-post-edit {
@@ -55,10 +70,33 @@
   line-height: 25px;
 }
 
+.single-post-desc-input {
+  border: none;
+  color: #666;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.single-post-desc-input:focus {
+  outline: none;
+}
+
 .single-post-desc::first-letter {
   margin-left: 20px;
   font-size: 30px;
   font-weight: 600;
+}
+
+.single-post-button {
+  width: 100px;
+  border: none;
+  background-color: rgb(8, 243, 8);
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-top: 20px;
 }
 
 @media only screen and (max-width: 720px) {
